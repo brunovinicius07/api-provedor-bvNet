@@ -22,7 +22,7 @@ public class Cliente implements Serializable {
 
     private String endereco;
 
-    private String telefone;
+    private char telefone;
 
     private String email;
 }

@@ -19,10 +19,26 @@ public class ClienteService {
         return cliente;
     }
 
+
     private Cliente converteObjetoDto(ClienteDto clienteDto) {
         return new Cliente(clienteDto.getNome(),
                            clienteDto.getEndereco(),
                            clienteDto.getTelefone(),
                            clienteDto.getEmail());
+    }
+
+    @Transactional
+    public Cliente editarCliente(ClienteDto clienteDto, Long id) {
+        Cliente cliente = clienteRepository.findById(id).orElse(null);
+        if(cliente == null) {
+            throw new RuntimeException("Cliente não encontrado");
+        }
+        cliente.setNome(clienteDto.getNome());
+        cliente.setEndereco(clienteDto.getEndereco());
+        cliente.setTelefone(clienteDto.getTelefone());
+        cliente.setEmail(clienteDto.getEmail());
+        clienteRepository.save(cliente);
+        return cliente;
+
     }
 }

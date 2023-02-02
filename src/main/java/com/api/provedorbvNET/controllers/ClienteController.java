@@ -17,7 +17,14 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping(value = "/cadastrarCliente")
-    public ResponseEntity<Cliente> cadastrarCliente(@RequestBody @Valid ClienteDto clienteDto) {
+    public ResponseEntity<Cliente>cadastrarCliente(@RequestBody @Valid ClienteDto clienteDto) {
         return new ResponseEntity<Cliente>(clienteService.cadastrarCliente(clienteDto), HttpStatus.CREATED);
     }
+
+    @PutMapping(value = "/editarCliente/{id}")
+    public ResponseEntity<Cliente>editarCliente(@PathVariable(value = "id") Long id, @RequestBody @Valid ClienteDto clienteDto){
+        return new ResponseEntity<Cliente>(clienteService.editarCliente(clienteDto, id), HttpStatus.OK);
+    }
+
+
 }

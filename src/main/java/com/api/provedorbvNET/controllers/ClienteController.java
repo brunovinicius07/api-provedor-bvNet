@@ -26,5 +26,10 @@ public class ClienteController {
         return new ResponseEntity<Cliente>(clienteService.editarCliente(clienteDto, id), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/buscarCliente/{id}")
+    public ResponseEntity<Cliente>buscarClientePorId(@PathVariable(value = "id") Long id){
+        return new ResponseEntity<Cliente>(clienteService.buscarClientePorId(id),HttpStatus.OK);
+    }
+
 
 }

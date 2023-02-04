@@ -3,28 +3,20 @@ package com.api.provedorbvNET.services;
 import com.api.provedorbvNET.dtos.ClienteDto;
 import com.api.provedorbvNET.entities.Cliente;
 import com.api.provedorbvNET.repositories.ClienteRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ClienteService {
-
     @Autowired
-    ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepository;
+
 
     @Transactional
     public Cliente cadastrarCliente(ClienteDto clienteDto) {
         Cliente cliente = clienteRepository.save(converteObjetoDto(clienteDto));
         return cliente;
-    }
-
-
-    private Cliente converteObjetoDto(ClienteDto clienteDto) {
-        return new Cliente(clienteDto.getNome(),
-                           clienteDto.getEndereco(),
-                           clienteDto.getTelefone(),
-                           clienteDto.getEmail());
     }
 
     @Transactional
@@ -39,6 +31,20 @@ public class ClienteService {
         cliente.setEmail(clienteDto.getEmail());
         clienteRepository.save(cliente);
         return cliente;
+    }
 
+    public Cliente buscarClientePorId(Long clienteId) {
+        Cliente cliente = clienteRepository.findById(clienteId).orElse(null);
+        if(cliente == null){
+            throw new RuntimeException("Cliente não encontrada");
+        }
+        return cliente;
+    }
+
+    public Cliente converteObjetoDto(ClienteDto clienteDto) {
+        return new Cliente(clienteDto.getNome(),
+                clienteDto.getEndereco(),
+                clienteDto.getTelefone(),
+                clienteDto.getEmail());
     }
 }

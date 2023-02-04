@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
@@ -22,13 +24,18 @@ public class ClienteController {
     }
 
     @PutMapping(value = "/editarCliente/{id}")
-    public ResponseEntity<Cliente>editarCliente(@PathVariable(value = "id") Long id, @RequestBody @Valid ClienteDto clienteDto){
+    public ResponseEntity<Cliente>editarCliente(@PathVariable(value = "id") Long id, @RequestBody @Valid ClienteDto clienteDto) {
         return new ResponseEntity<Cliente>(clienteService.editarCliente(clienteDto, id), HttpStatus.OK);
     }
 
     @GetMapping(value = "/buscarCliente/{id}")
-    public ResponseEntity<Cliente>buscarClientePorId(@PathVariable(value = "id") Long id){
+    public ResponseEntity<Cliente>buscarClientePorId(@PathVariable(value = "id") Long id) {
         return new ResponseEntity<Cliente>(clienteService.buscarClientePorId(id),HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/listarClientes")
+    public ResponseEntity<List<Cliente>> listarClientes() {
+        return new ResponseEntity<List<Cliente>>(clienteService.listarClientes(),HttpStatus.OK);
     }
 
 

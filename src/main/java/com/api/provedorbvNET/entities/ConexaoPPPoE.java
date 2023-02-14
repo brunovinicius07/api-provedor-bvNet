@@ -29,9 +29,16 @@ public class ConexaoPPPoE implements Serializable {
 
     private String senha;
 
-    private int ip;
+    private String ip;
 
     @JsonManagedReference
     @ManyToOne
     private Cliente cliente;
+
+    public ConexaoPPPoE(String login, String senha, String ip, Cliente cliente) {
+        this.login = login;
+        this.senha = senha;
+        this.ip = ip;
+        this.cliente = cliente;
+    }
 }

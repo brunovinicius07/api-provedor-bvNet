@@ -9,10 +9,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/PPPoE")
@@ -30,5 +28,10 @@ public class ConexaoPPPoEController {
     @PostMapping(value = ("/cadastrarPPPoE"))
     public ResponseEntity<ConexaoPPPoE> cadastrarPPPoE(@RequestBody @Valid ConexaoPPPoEDto conexaoPPPoEDto){
         return new ResponseEntity<ConexaoPPPoE>(conexaoPPPoEService.cadastrarPPPoE(conexaoPPPoEDto), HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = ("/buscarPPPoE/{id}"))
+    public ResponseEntity<ConexaoPPPoE> buscarPPPoE(@PathVariable(value = "id") Long id){
+        return new ResponseEntity<ConexaoPPPoE>(conexaoPPPoEService.buscarPPPoEPorId(id),HttpStatus.OK);
     }
 }

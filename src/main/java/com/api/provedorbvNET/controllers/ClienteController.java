@@ -2,6 +2,7 @@ package com.api.provedorbvNET.controllers;
 
 import com.api.provedorbvNET.dtos.ClienteDto;
 import com.api.provedorbvNET.entities.Cliente;
+import com.api.provedorbvNET.repositories.ClienteRepository;
 import com.api.provedorbvNET.services.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
+
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     @Autowired
     private ClienteService clienteService;

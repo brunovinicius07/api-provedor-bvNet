@@ -33,4 +33,12 @@ public class ConexaoPPPoEService {
                                 conexaoPPPoEDto.getIp(),
                                 cliente.get());
     }
+
+    public ConexaoPPPoE buscarPPPoEPorId(Long id) {
+        ConexaoPPPoE conexaoPPPoE = conexaoPPPoERepository.findById(id).orElse(null);
+        if(conexaoPPPoE == null){
+            throw new RuntimeException("PPPoE não encontrado");
+        }
+        return conexaoPPPoE;
+    }
 }

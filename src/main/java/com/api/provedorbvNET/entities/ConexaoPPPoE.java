@@ -1,6 +1,6 @@
 package com.api.provedorbvNET.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,7 +31,7 @@ public class ConexaoPPPoE implements Serializable {
 
     private String ip;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToOne
     private Cliente cliente;
 

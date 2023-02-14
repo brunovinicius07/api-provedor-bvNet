@@ -1,5 +1,6 @@
 package com.api.provedorbvNET.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -30,6 +33,10 @@ public class Cliente implements Serializable {
     private Long telefone;
 
     private String email;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<ConexaoPPPoE> conexaoPPPoE = new ArrayList<>();
 
 
     public Cliente(String nome, String endereco, Long telefone, String email) {

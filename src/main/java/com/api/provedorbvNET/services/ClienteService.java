@@ -3,6 +3,7 @@ package com.api.provedorbvNET.services;
 import com.api.provedorbvNET.dtos.ClienteDto;
 import com.api.provedorbvNET.entities.Cliente;
 import com.api.provedorbvNET.repositories.ClienteRepository;
+import com.api.provedorbvNET.repositories.ConexaoPPPoERepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,8 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private ConexaoPPPoERepository conexaoPPPoERepository;
 
     @Transactional
     public Cliente cadastrarCliente(ClienteDto clienteDto) {

@@ -12,5 +12,7 @@ public class ConexaoPPPoEDto {
 
     private String senha;
 
-    private int ip;
+    private String ip;
+
+    private long clienteId;
 }

@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/PPPoE")
@@ -33,5 +35,10 @@ public class ConexaoPPPoEController {
     @GetMapping(value = ("/buscarPPPoE/{id}"))
     public ResponseEntity<ConexaoPPPoE> buscarPPPoE(@PathVariable(value = "id") Long id){
         return new ResponseEntity<ConexaoPPPoE>(conexaoPPPoEService.buscarPPPoEPorId(id),HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/listarPPPoECliente/{id}")
+    public ResponseEntity<List<ConexaoPPPoE>>listarPPPoECliente(@PathVariable(value = "id") Long id){
+        return new ResponseEntity<List<ConexaoPPPoE>>(conexaoPPPoEService.buscarPPPoECliente(id), HttpStatus.OK);
     }
 }
